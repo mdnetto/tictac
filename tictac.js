@@ -25,13 +25,7 @@ function setSquare(e) {
 				thisSquare.className = '';
 		}
 
-		xIsWinner = checkWin();
-
-	console.log(xIsWinner);
-		if (xIsWinner == false) {
-				computerSetSquare;
-		}
-		
+		checkWin();
 }
 
 function computerSetSquare() {
@@ -51,9 +45,7 @@ function computerSetSquare() {
 function checkWin() {
 		var xArray = [];
 		var oArray = [];
-		var winners = new Array(
-				[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]
-		);	
+		var winners = new Array([1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]);	
 		
 		for(var i=1; i<=9; i++) {
 				var square = document.getElementById(i).innerHTML;
@@ -66,21 +58,15 @@ function checkWin() {
 		}
 
 		for (var i=0; i<winners.length; i++) {
-				xHasWon = winners[i].every(function (val) {
+				var xHasWon = winners[i].every(function(val) {
 						return xArray.indexOf(val) >= 0;
 				});
 
-				oHasWon = winners[i].every(function (val) {
-						return oArray.indexOf(val) >= 0;
-				});
-
-				if (xHasWon || oHasWon) { 
+				if (xHasWon) { 
 						var person = '';
-						xHasWon ? person = 'You have' : 'The computer has';
+						xHasWon ? person = 'you have' : 'the computer has';
 						document.getElementById('text').innerHTML = person + ' won!';
 						return true;
-				} else {
-					return false;
 				}
 		}
 
